@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import { Metadata } from "next/types";
-import { Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +52,7 @@ export default function RootLayout({
       <body className="bg-secondary">
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
