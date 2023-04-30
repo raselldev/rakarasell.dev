@@ -36,10 +36,9 @@ export const metadata: Metadata = {
   icons: {
     shortcut: "/favicon.svg",
   },
-  // verification: {
-  //   google: "eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw",
-  //   yandex: "14d2e73487fa6c71",
-  // },
+  verification: {
+    google: "yohK4bT0nSP52jy0TZHIjNAK9E_dXnNy0NErhpdnB04",
+  },
 };
 
 export default function RootLayout({

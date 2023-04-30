@@ -34,7 +34,7 @@ export default function Project() {
           (repo, index) =>
             index < 3 && (
               <div
-                className="rounded-xl border border-accent m-1 bg-secondary gap-4 mb-2 w-1/3 py-4 pt-4"
+                className="rounded-xl border border-accent m-1 bg-secondary gap-4 mb-2 md:w-1/3 lg:w-1/3 py-4 pt-4"
                 key={repo.id}
               >
                 <Link
@@ -51,7 +51,7 @@ export default function Project() {
                       {repo.name}
                     </h3>
 
-                    <p className="mt-2 hidden text-sm sm:block text-center">
+                    <p className="mt-2 text-sm sm:block text-center">
                       {repo.description}
                     </p>
                   </div>

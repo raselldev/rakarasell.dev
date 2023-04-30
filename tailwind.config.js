@@ -11,6 +11,9 @@ module.exports = {
         'primary': '#334257',
         'secondary': '#EEEEEE',
         'accent': '#548CA8'
+      },
+      zIndex: {
+        '1000':'1000'
       }
     }
   },
