@@ -1,5 +1,8 @@
 
+
 Personal portfolio website using Next.js, Typescript, Tailwindcss, Notion as CMS
+
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/raselldev/rakarasell.dev/codeql.yml?style=for-the-badge) ![GitHub repo size](https://img.shields.io/github/repo-size/raselldev/rakarasell.dev?style=for-the-badge) ![Website](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Frakarasell.dev) 
 
 ## Getting Started
 
