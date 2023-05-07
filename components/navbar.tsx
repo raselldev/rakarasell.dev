@@ -30,6 +30,7 @@ export default function Navbar() {
                   key={link.title}
                   href={link.href}
                   className="p-1 font-medium text-primary sm:p-4 hover:text-accent"
+                  target={link.title === "GitHub" ? "_blank" : undefined}
                 >
                   {link.title}
                 </Link>
