@@ -1,9 +1,13 @@
-import Navbar from "@/components/navbar";
+import Header from "@/components/Header";
 import "./globals.css";
-import { Metadata } from "next/types";
-import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Footer from "@/components/Footer";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rakarasell.dev"),
   title: {
     default: "Raka Rasell",
     template: "%s | Raka Rasell",
@@ -47,11 +51,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-secondary">
-        <Navbar />
+    <html className="h-full scroll-smooth" lang="en" dir="ltr">
+      <body className={inter.className}>
+        <Header />
         {children}
-        <Analytics />
+        <Footer />
       </body>
     </html>
   );
