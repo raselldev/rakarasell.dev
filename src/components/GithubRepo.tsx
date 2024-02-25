@@ -59,7 +59,7 @@ export default function GithubRepo() {
                 <CardFooter>
                   {repo.topics.map((x) => {
                     return (
-                      <Badge className="m-1">
+                      <Badge key={x} className="m-1">
                         {x}&nbsp;
                       </Badge>
                     )
