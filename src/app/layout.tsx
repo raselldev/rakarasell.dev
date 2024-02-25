@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,6 +65,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Analytics />
+          <SpeedInsights />
           <Footer />
         </ThemeProvider>
 

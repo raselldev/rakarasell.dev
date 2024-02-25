@@ -30,18 +30,18 @@ export default function Hero() {
         </p>
 
         <div className="space-y-4 md:space-y-0 md:space-x-4">
-          <Button className="w-full md:w-1/3">Get Started</Button>
-
-          <a
-            href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-            target="_blank"
-            className={`w-full md:w-1/3 ${buttonVariants({
-              variant: "outline",
-            })}`}
-          >
-            Github Repository
-
-          </a>
+          <Link href="mailto:rakarasell@outlook.com">
+            <Button className="inline-flex items-center py-3 px-5 text-base text-white">
+              <Contact className="mr-2 h-4 w-4" />
+              Contact
+            </Button>
+          </Link>
+          <Link href="https://www.linkedin.com/in/rakarasell/">
+            <Button className="inline-flex items-center py-3 px-5 text-base text-white">
+              <File className="mr-2 h-4 w-4" />
+              See Resume
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -75,18 +75,18 @@ export default function Hero() {
     //       </p>
     //     </div>
     //     <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-    //       <Link href="mailto:rakarasell@outlook.com">
-    //         <Button className="inline-flex items-center py-3 px-5 text-base text-white">
-    //           <Contact className="mr-2 h-4 w-4" />
-    //           Contact
-    //         </Button>
-    //       </Link>
-    //       <Link href="https://www.linkedin.com/in/rakarasell/">
-    //         <Button className="inline-flex items-center py-3 px-5 text-base text-white">
-    //           <File className="mr-2 h-4 w-4" />
-    //           See Resume
-    //         </Button>
-    //       </Link>
+    // <Link href="mailto:rakarasell@outlook.com">
+    //   <Button className="inline-flex items-center py-3 px-5 text-base text-white">
+    //     <Contact className="mr-2 h-4 w-4" />
+    //     Contact
+    //   </Button>
+    // </Link>
+    // <Link href="https://www.linkedin.com/in/rakarasell/">
+    //   <Button className="inline-flex items-center py-3 px-5 text-base text-white">
+    //     <File className="mr-2 h-4 w-4" />
+    //     See Resume
+    //   </Button>
+    // </Link>
     //     </div>
     //   </div>
     // </div>
