@@ -1,43 +1,28 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Container from "./Container";
-import Image from "next/image";
-import Logo from "../../public/icon.svg";
-import { MenuLinks } from "@/lib/menu";
 import { useEffect, useState } from "react";
-import HeaderMenuLinks from "./HeaderMenuLinks";
-import HeaderMenu from "./HeaderMenu";
+import MainNav from "./MainNav";
+import MobileNav from "./MobileNav";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Header() {
   const routerPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => setShowMenu(false), [routerPath]);
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b bg-primary">
-      <Container classNames="relative flex h-16 items-center justify-between gap-4 sm:gap-8">
-        <div className="flex flex-1 items-center gap-4">
-          <Link href="/">
-            <div className="inline-flex gap-1.5 text-sm">
-              <Image src={Logo} alt="logo" width={45} />
-            </div>
-          </Link>
-
-          <HeaderMenuLinks
-            menuLinks={MenuLinks}
-            navClass="hidden lg:block lg:flex-1"
-            ulClass="gap-4 flex"
-          />
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 max-w-screen-2xl items-center">
+        <MainNav />
+        <MobileNav />
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+          </div>
+          <nav className="flex items-center">
+            <ModeToggle />
+          </nav>
         </div>
-        <div className="flex items-center justify-end gap-2 sm:gap-4">
-          <HeaderMenu
-            showMenu={showMenu}
-            handleSetShowMenu={setShowMenu}
-            menuLinks={MenuLinks}
-          />
-        </div>
-      </Container>
+      </div>
     </header>
   );
 }
