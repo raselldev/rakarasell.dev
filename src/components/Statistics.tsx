@@ -1,28 +1,6 @@
+import { stats } from "@/lib/stats";
+
 export default function Statistics() {
-    interface statsProps {
-        quantity: string;
-        description: string;
-    }
-
-    const stats: statsProps[] = [
-        {
-            quantity: "3y+",
-            description: "Coding Experience",
-        },
-        {
-            quantity: "2y+",
-            description: "Lead Company",
-        },
-        {
-            quantity: "25+",
-            description: "Open Repositories",
-        },
-        {
-            quantity: "3",
-            description: "Projects",
-        },
-    ];
-
     return (
         <section id="statistics">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">

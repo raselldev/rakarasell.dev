@@ -1,14 +1,11 @@
 import Header from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rakarasell.dev"),
@@ -24,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "Raka Rasell",
     images: [
       {
-        url: "https://rakarasell.dev/og.jpeg",
+        url: "https://rakarasell.dev/head-profile.png",
       },
     ],
     locale: "en-US",

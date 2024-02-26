@@ -1,7 +1,6 @@
 "use client"
 
 import About from "@/components/About";
-import Footer from "@/components/Footer";
 import GithubRepo from "@/components/GithubRepo";
 import Hero from "@/components/Hero";
 import Image from "next/image";

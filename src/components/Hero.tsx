@@ -37,7 +37,7 @@ export default function Hero() {
             </Button>
           </Link>
           <Link href="https://www.linkedin.com/in/rakarasell/">
-            <Button className="inline-flex items-center py-3 px-5 text-base text-white">
+            <Button className="inline-flex items-center py-3 px-5 text-base dark:text-white text-black" variant="secondary">
               <File className="mr-2 h-4 w-4" />
               See Resume
             </Button>
@@ -57,38 +57,5 @@ export default function Hero() {
       {/* Shadow effect */}
       <div className="shadow"></div>
     </section>
-    // <div>
-    //   <div className="h-screen leading-normal tracking-normal lg:m-12 md:m-2 sm:m-0 bg-cover bg-fixed">
-    //     <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-    // <h1 className="my-4 text-3xl md:text-5xl text-black dark:text-white opacity-75 font-bold leading-tight text-center md:text-left">
-    //   Hi!👋
-    //   <br />
-    //   You can call me{" "}
-    //   <span className="bg-gradient-to-r from-primary to-[#D247BF] text-transparent bg-clip-text">
-    //     Rasell
-    //   </span>
-    // </h1>
-    //       <p className="leading-normal text-base md:text-2xl mb-8 text-center md:text-left text-black dark:text-white xs:none">
-    // A young man who transitioned to a career as a software developer after
-    // working in social media content, digital marketing, video editing, and
-    // as a product owner.
-    //       </p>
-    //     </div>
-    //     <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-    // <Link href="mailto:rakarasell@outlook.com">
-    //   <Button className="inline-flex items-center py-3 px-5 text-base text-white">
-    //     <Contact className="mr-2 h-4 w-4" />
-    //     Contact
-    //   </Button>
-    // </Link>
-    // <Link href="https://www.linkedin.com/in/rakarasell/">
-    //   <Button className="inline-flex items-center py-3 px-5 text-base text-white">
-    //     <File className="mr-2 h-4 w-4" />
-    //     See Resume
-    //   </Button>
-    // </Link>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
