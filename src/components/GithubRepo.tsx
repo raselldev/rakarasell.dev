@@ -38,8 +38,7 @@ export default function GithubRepo() {
         on GitHub
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+        Check out our newest stuff on GitHub! It's full of cool projects and useful code. Dive in and join the coding fun!
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
