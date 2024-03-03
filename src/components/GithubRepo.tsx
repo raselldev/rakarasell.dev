@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { ConvertDatetime } from "@/lib/convert";
 
 type Repository = {
   id: number;
@@ -53,6 +54,7 @@ export default function GithubRepo() {
                   <CardTitle className="grid gap-4 place-items-center">
                     {repo.name}
                   </CardTitle>
+                  <CardDescription>{"Latest Update: " + ConvertDatetime(repo.updated_at.toString())}</CardDescription>
                 </CardHeader>
                 <CardContent>{repo.description}</CardContent>
                 <CardFooter>
