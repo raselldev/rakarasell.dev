@@ -23,7 +23,7 @@ export default function BlogPost() {
     }, [])
     return (
         <section className="container text-center py-24 sm:py-32">
-            <h2 className="text-3xl md:text-4xl font-bold ">
+            <h2 className="text-3xl md:text-4xl font-bold">
                 Blog {" "}
                 <span className="bg-gradient-to-r from-primary to-[#D247BF] text-transparent bg-clip-text">
                     Post{" "}
@@ -36,7 +36,7 @@ export default function BlogPost() {
                 {post.map(
                     (post, index) =>
                         index < 8 && (
-                            <Link href={"blog/" + post.id}>
+                            <Link href={"blog/" + post.id} key={post.id}>
                                 <Card
                                     key={post.id}
                                     className="bg-muted/50"
