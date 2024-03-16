@@ -30,7 +30,7 @@ export default function BlogPost() {
                 </span>
             </h2>
             <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-                Check out our newest stuff on GitHub! It&apos;s full of cool projects and useful code. Dive in and join the coding fun!
+                Welcome to our Blog! Explore our latest posts filled with interesting topics and valuable insights. Join the fun of reading and learning with us!
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {post.map(
