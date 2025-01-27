@@ -4,7 +4,7 @@ slug: "2025-redesign-my-website"
 date: "2025-01-27"
 author: "raselldev"
 description: How I redesigned my entire website using Daisy UI, embracing simplicity and modern design principles.
-thumbnail: "https://res.cloudinary.com/dxqsx0s9g/image/upload/v1737865422/cld-sample-2.jpg"
+thumbnail: "https://res.cloudinary.com/dxqsx0s9g/image/upload/v1737996741/Screenshot_2025-01-27_at_23.44.52_svqjhm.png"
 tags:
   - portfolio
   - webiste
