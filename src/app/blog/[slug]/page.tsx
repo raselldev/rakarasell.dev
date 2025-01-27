@@ -1,29 +1,44 @@
-"use client"
+import { getPostBySlug, getPostSlugs } from "@/lib/markdown";
+import { notFound } from "next/navigation";
 
-import { SingleBlogPost } from "@/lib/typeSingleBlogPost"
-import { useEffect, useState } from "react"
-import ReactMarkdown from 'react-markdown'
+// Generate static paths for all blog posts
+export function generateStaticParams() {
+  const slugs = getPostSlugs();
+  return slugs.map((slug) => ({ slug: slug.replace(/\.md$/, "") }));
+}
 
-export default function Page({ params }: { params: { slug: string } }) {
-    const [post, setPost] = useState<SingleBlogPost>()
+// Generate metadata for the blog post
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
+  const post = await getPostBySlug(params.slug);
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+  return { title: post.metadata.title };
+}
 
-    useEffect(() => {
-        fetch("https://dev.to/api/articles/" + params.slug)
-            .then((res) => res.json())
-            .then((data: any) => {
-                setPost(data)
-            })
-            .catch((err) => console.error(err))
-    }, [])
+// Blog post component
+export default async function BlogPost(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
+  const post = getPostBySlug(params.slug);
 
-    return (
-        <section className="container py-24 sm:py-32">
-            <div className="md:w-3/4 mx-auto mt-4 mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold">{post?.title}</h2>
-            </div>
-            <ReactMarkdown className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-                {post?.body_markdown}
-            </ReactMarkdown>
-        </section>
-    )
+  if (!post) {
+    notFound();
+  }
+
+  const { metadata, processedContent } = await post;
+
+  return (
+    <div className="container py-12 flex flex-col items-center">
+      <h1 className="text-4xl font-bold">{metadata.title}</h1>
+      <p className="text-muted-foreground">{metadata.description}</p>
+      <div className="prose mt-8">
+        <div dangerouslySetInnerHTML={{ __html: processedContent }} />
+      </div>
+    </div>
+  );
 }

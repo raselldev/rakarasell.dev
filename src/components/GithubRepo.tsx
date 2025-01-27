@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { ConvertDatetime } from "@/lib/convert";
 
 type Repository = {
@@ -13,7 +11,7 @@ type Repository = {
   language: string;
   updated_at: string;
   size: number;
-  topics: string[]
+  topics: string[];
 };
 
 export default function GithubRepo() {
@@ -30,19 +28,20 @@ export default function GithubRepo() {
       .catch((err) => console.error(err));
   }, []);
   return (
-    <section className="container text-center py-24 sm:py-32">
+    <section className="container text-center ">
       <h2 className="text-3xl md:text-4xl font-bold ">
-        Latest {" "}
+        Latest{" "}
         <span className="bg-gradient-to-r from-primary to-[#D247BF] text-transparent bg-clip-text">
           Repository{" "}
         </span>
         on GitHub
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        Check out our newest stuff on GitHub! It&apos;s full of cool projects and useful code. Dive in and join the coding fun!
+        Check out our newest stuff on GitHub! It&apos;s full of cool projects
+        and useful code. Dive in and join the coding fun!
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {repo.map(
           (repo, index) =>
             index < 8 && (
@@ -71,7 +70,7 @@ export default function GithubRepo() {
               </Card>
             )
         )}
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["media.dev.to", "amazonaws.com"]
-    }
+        remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
+      }
 }
 
 module.exports = nextConfig

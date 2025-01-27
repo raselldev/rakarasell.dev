@@ -3,9 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rakarasell.dev"),
@@ -53,19 +53,19 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
-      <body className={cn("min-h-screen bg-background font-sans antialiased",)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <Analytics />
-          <SpeedInsights />
-          <Footer />
-        </ThemeProvider>
-
+      <Head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="382c517e-ae69-40fb-99c9-765c58c8f38f"
+        ></script>
+      </Head>
+      <body className={cn("min-h-screen bg-base-100 font-sans antialiased")}>
+        <Header />
+        {children}
+        <Analytics />
+        <SpeedInsights />
+        <Footer />
       </body>
     </html>
   );

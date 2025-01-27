@@ -1,10 +1,10 @@
 "use client";
-import { generateImage } from "@/lib/imageGenerator";
 import { ProjectList } from "@/lib/projectList";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { generateImage } from "@/lib/imageGenerator";
 
-export default function Page() {
+export default function Projects() {
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -13,21 +13,22 @@ export default function Page() {
     );
     setGeneratedImages(images);
   }, []);
-  return (
-    <main className="flex min-h-screen w-full flex-col justify-between">
-      <section className="container py-24">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
-          List <span className="text-primary">Project </span>
-        </h2>
-        <p className="text-center md:w-2/3 lg:w-1/2 mx-auto mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
-          Explore my handpicked projects spanning various fields. Join me on a
-          journey of innovation and creativity that inspires and empowers!
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 justify-items-stretch">
-          {ProjectList.map((post, index) => {
-            const imgSrc = generatedImages[index] || null;
 
-            return (
+  return (
+    <section className="container py-24">
+      <h2 className="text-3xl md:text-4xl font-bold text-center">
+        Latest <span className="text-primary">Project</span>
+      </h2>
+      <p className="text-center md:w-2/3 lg:w-1/2 mx-auto mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+        Explore my handpicked projects spanning various fields. Join me on a
+        journey of innovation and creativity that inspires and empowers!
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 justify-items-stretch">
+        {ProjectList.map((post, index) => {
+          const imgSrc = generatedImages[index] || null;
+
+          return (
+            index < 3 && (
               <a
                 href={post.link}
                 target="_blank"
@@ -53,15 +54,12 @@ export default function Page() {
                       {post.description}
                     </p>
                   </div>
-                  <button className="mt-4 block w-full rounded bg-primary p-4 text-sm text-white font-medium transition hover:scale-105">
-                    Read More
-                  </button>
                 </div>
               </a>
-            );
-          })}
-        </div>
-      </section>
-    </main>
+            )
+          );
+        })}
+      </div>
+    </section>
   );
 }
