@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Head from "next/head";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rakarasell.dev"),
@@ -39,7 +40,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    shortcut: "/favicon.svg",
+    icon: "/favicon.svg", // pakai "icon" instead of "shortcut"
+    shortcut: "/favicon.svg", // optional, buat backward compat
+    apple: "/favicon.svg", // optional, buat iOS
   },
   verification: {
     google: "yohK4bT0nSP52jy0TZHIjNAK9E_dXnNy0NErhpdnB04",
@@ -53,13 +56,11 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full scroll-smooth" lang="en" dir="ltr">
-      <Head>
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="382c517e-ae69-40fb-99c9-765c58c8f38f"
-        ></script>
-      </Head>
+      <Script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="382c517e-ae69-40fb-99c9-765c58c8f38f"
+      ></Script>
       <body className={cn("min-h-screen bg-base-100 font-sans antialiased")}>
         <Header />
         {children}

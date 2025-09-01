@@ -1,7 +1,7 @@
 "use client";
 
-import SectionHeader from "@/components/shared/SectionHeader";
 import { useEffect, useState } from "react";
+import SectionHeader from "./shared/SectionHeader";
 
 type MediumPost = {
   title: string;
@@ -12,7 +12,7 @@ type MediumPost = {
   tags: string[];
 };
 
-export default function BlogPage() {
+export default function MediumFeedClient() {
   const [data, setData] = useState<MediumPost[]>([]);
   const [err, setErr] = useState<string | null>(null);
 
@@ -32,8 +32,9 @@ export default function BlogPage() {
 
   return (
     <section className="w-full py-12">
-      <div className="grid p-10 gap-6 md:grid-cols-4 lg:grid-cols-4">
-        {data.map(
+      <SectionHeader title="Latest from Medium" align="center" />
+      <div className="grid gap-6 md:grid-cols-3">
+        {data.slice(0, 3).map(
           (
             p // 👈 tambahin slice(0, 3)
           ) => (
