@@ -1,5 +1,6 @@
 "use client";
 
+
 import SectionHeader from "./shared/SectionHeader";
 
 export default function TrustedBy() {
@@ -10,7 +11,7 @@ export default function TrustedBy() {
         align="center"
       />
       <p className="p-1 text-muted-foreground mb-10 max-w-2xl">
-        I've had the privilege of collaborating with some of the world's most
+        I&apos;ve had the privilege of collaborating with some of the world&apos;s most
         innovative companies.
       </p>
       <div className="flex p-4 flex-wrap justify-center gap-8 sm:gap-12">

@@ -60,7 +60,7 @@ export default function AboutPage() {
         <SectionHeader title="Let's Connect" align="center" />
         <p className="text-muted-foreground mb-6">
           Interested in working together or just want to say hi? Reach out and
-          let's build something awesome.
+          let&apos;s build something awesome.
         </p>
         <a
           href="mailto:rakarasell@outlook.com"
