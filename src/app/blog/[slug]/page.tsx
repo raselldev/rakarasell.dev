@@ -24,13 +24,13 @@ export default async function BlogPost(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
   }
 
-  const { metadata, processedContent } = await post;
+  const { metadata, processedContent } = post;
 
   return (
     <div className="container py-12 flex flex-col items-center">
