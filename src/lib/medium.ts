@@ -25,8 +25,32 @@ export type MediumPost = {
 
 const parser = new Parser<unknown, MediumItem>();
 
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' ',
+};
+
+function decodeEntities(text: string) {
+  return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (match, code: string) => {
+    if (code[0] === '#') {
+      const n = code[1].toLowerCase() === 'x' ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
+      return Number.isNaN(n) ? match : String.fromCodePoint(n);
+    }
+    return NAMED_ENTITIES[code.toLowerCase()] ?? match;
+  });
+}
+
 function stripHtml(html = '') {
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  return decodeEntities(html.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+}
+
+// Figures carry image captions ("Photo by … on Unsplash") that shouldn't leak into snippets
+function stripFigures(html = '') {
+  return html.replace(/<figure[\s\S]*?<\/figure>/gi, ' ');
 }
 
 function extractImage(html = ''): string | null {
@@ -46,7 +70,8 @@ export async function getMediumFeed(): Promise<MediumPost[]> {
     const feed = await parser.parseURL(url);
     return (feed.items || []).map((it) => {
       const html = it['content:encoded'] || it.content || '';
-      const snippet = it.contentSnippet || stripHtml(html).slice(0, 220);
+      const snippet =
+        stripHtml(stripFigures(html)).slice(0, 220) || it.contentSnippet || '';
       const img = extractImage(html);
 
       return {

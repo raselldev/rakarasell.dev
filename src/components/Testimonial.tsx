@@ -1,23 +1,42 @@
+"use client";
+
 import { TestimonialList } from "@/lib/testimonial";
-import SectionHeader from "./shared/SectionHeader";
+import { Reveal, Section } from "./home/Section";
 
 export default function Testimonial() {
   return (
-    <section className="max-w-5xl mx-auto text-center px-6 py-12">
-      <SectionHeader title="What People Say" align="center" />
-      <div className="grid md:grid-cols-3 gap-6">
+    <Section
+      id="testimonials"
+      index="04"
+      label="Kind words"
+      title={
+        <>
+          What people{" "}
+          <span className="font-serif font-normal italic">say</span>
+        </>
+      }
+    >
+      <div className="columns-1 gap-6 md:columns-2 lg:columns-3">
         {TestimonialList.map((item, index) => (
-          <blockquote
-            key={index}
-            className="p-6 rounded-2xl border shadow-sm bg-card text-muted-foreground italic"
-          >
-            “{item.quote}”
-            <footer className="mt-4 font-semibold not-italic">
-              — {item.name}, <span className="text-gray-500">{item.role}</span>
-            </footer>
-          </blockquote>
+          <Reveal key={item.name} delay={index * 0.05} className="mb-6 break-inside-avoid" lift>
+            <figure className="rounded-2xl border bg-card p-6">
+              <span
+                aria-hidden
+                className="block font-serif text-5xl leading-none text-primary"
+              >
+                &ldquo;
+              </span>
+              <blockquote className="mt-2 text-lg leading-relaxed">
+                {item.quote}
+              </blockquote>
+              <figcaption className="mt-6 border-t pt-4">
+                <p className="font-semibold">{item.name}</p>
+                <p className="text-sm text-muted-foreground">{item.role}</p>
+              </figcaption>
+            </figure>
+          </Reveal>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
