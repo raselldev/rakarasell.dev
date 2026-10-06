@@ -3,5 +3,6 @@ export const MenuLinks = [
   { title: "About", href: "/about", external: false },
   { title: "Blog", href: "/blog", external: false },
   { title: "Project", href: "/project", external: false },
+  { title: "Trading Journal", href: "/trading-journal", external: false },
   { title: "GitHub", href: "https://github.com/raselldev", external: true },
 ];
