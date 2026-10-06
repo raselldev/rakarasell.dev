@@ -1,17 +1,17 @@
 {
   "account": {
     "currency": "USD",
-    "startBalance": 100.00
+    "startBalance": 100
   },
   "summary": {
     "updated": "2026-10-06",
-    "balance": 96.40,
-    "trades": 2,
+    "balance": 94.4,
+    "trades": 3,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "winRatePct": 0,
-    "totalPnl": -3.60,
-    "maxDrawdownPct": 3.6
+    "totalPnl": -5.6,
+    "maxDrawdownPct": 5.6
   },
   "trades": [
     {
@@ -19,15 +19,15 @@
       "pair": "USDJPY",
       "side": "buy",
       "lot": 0.01,
-      "entry": 157.850,
-      "sl": 157.550,
-      "tp": 158.450,
+      "entry": 157.85,
+      "sl": 157.55,
+      "tp": 158.45,
       "opened": "2026-10-02T09:08+07:00",
       "closed": "2026-10-02",
       "result": "SL",
       "pips": -30,
-      "pnl": -1.90,
-      "balanceAfter": 98.10,
+      "pnl": -1.9,
+      "balanceAfter": 98.1,
       "reason": "H4 uptrend, H1 membentuk higher low. Buy limit di area pantulan pagi 157.85.",
       "lesson": "H4 sebenarnya ambigu: high 158.45 masih di bawah 159. Kalau struktur H4 ambigu, lewati."
     },
@@ -36,17 +36,34 @@
       "pair": "AUDUSD",
       "side": "sell",
       "lot": 0.01,
-      "entry": 0.69440,
-      "sl": 0.69610,
-      "tp": 0.69100,
+      "entry": 0.6944,
+      "sl": 0.6961,
+      "tp": 0.691,
       "opened": "2026-10-05T13:16+07:00",
       "closed": "2026-10-05",
       "result": "SL",
       "pips": -17,
-      "pnl": -1.70,
-      "balanceAfter": 96.40,
+      "pnl": -1.7,
+      "balanceAfter": 96.4,
       "reason": "H4 downtrend. Sell di retest support 0.6944 yang jebol.",
       "lesson": "Setelah candle berita besar (NFP), tunggu konfirmasi struktur sebelum masuk melawannya."
+    },
+    {
+      "no": 3,
+      "pair": "EURUSD",
+      "side": "sell",
+      "lot": 0.01,
+      "entry": 1.125,
+      "sl": 1.127,
+      "tp": 1.121,
+      "opened": "2026-10-06T18:13+07:00",
+      "closed": "2026-10-06T18:42+07:00",
+      "result": "SL",
+      "pips": -20,
+      "pnl": -2,
+      "balanceAfter": 94.4,
+      "reason": "H4 downtrend paling bersih. Sell limit di zona konsolidasi H1 1.1250-1.1265 tempat penurunan sebelumnya dimulai.",
+      "lesson": "Harga masuk zona dengan satu candle H1 ~40 pips. Dorongan sekuat itu menembus level, sama seperti AUDUSD."
     }
   ]
 }
