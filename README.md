@@ -1,27 +1,53 @@
-This repo is portfolio project build with NextJS and DaisyUI
+# rakarasell.dev
 
-## Getting Started
+Personal portfolio, blog, and trading journal of Raka Rasell — live at [rakarasell.dev](https://rakarasell.dev).
 
-First, run the development server:
+Built with Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, and Framer Motion, deployed to Cloudflare Workers via [OpenNext](https://opennext.js.org/cloudflare).
+
+## Pages
+
+| Route              | Content                                                       |
+| ------------------ | ------------------------------------------------------------- |
+| `/`                | Home — hero, experience, tools, latest projects and posts     |
+| `/about`           | About me                                                      |
+| `/blog`            | Blog index, pulled from my Medium RSS feed                    |
+| `/blog/[slug]`     | Local markdown posts from `src/posts/`                        |
+| `/project`         | Selected projects                                             |
+| `/trading-journal` | Public forex trading journal — stats, trades, reasons, lessons |
+
+## Getting started
 
 ```bash
-npm run dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
+| Command           | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `npm run dev`     | Start the dev server                                    |
+| `npm run build`   | Production Next.js build                                |
+| `npm run start`   | Run the production build                                |
+| `npm run preview` | Build and run the Cloudflare Worker locally (wrangler)  |
+| `npm run deploy`  | Build and deploy the Cloudflare Worker                  |
+| `npm run shadcn`  | Add shadcn/ui components                                |
 
-## Learn More
+`dev` and `build` first run `scripts/generate-posts.mjs`, which bakes the markdown posts into `src/lib/posts.generated.ts` (Workers have no filesystem at runtime).
 
-To learn more about Next.js, take a look at the following resources:
+## Updating content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Blog post** — add a `.md` file with frontmatter (`title`, `date`, `slug`, `description`, `thumbnail`, `author`, `tags`) to `src/posts/`.
+- **Trading journal** — edit `public/trading-journal.json` (account, summary, and trades). The page reads it at build time, so redeploy to publish changes. The raw file is also served at `/trading-journal.json`.
+- **Projects, experience, testimonials, tools, nav menu** — edit the data arrays in `src/lib/` (`projectList.ts`, `experience.ts`, `testimonial.ts`, `tool.ts`, `menu.ts`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Deployed on Cloudflare Workers with `@opennextjs/cloudflare`. Use `npm run deploy` locally.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For Cloudflare's dashboard Git integration (Workers Builds), set:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Build command:** `npm run build:worker`
+- **Deploy command:** `npx wrangler deploy`
+
+Images are served unoptimized (`images.unoptimized: true`), since Workers can't run the sharp-based `next/image` optimizer.
