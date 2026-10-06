@@ -1,0 +1,52 @@
+{
+  "account": {
+    "currency": "USD",
+    "startBalance": 100.00
+  },
+  "summary": {
+    "updated": "2026-10-06",
+    "balance": 96.40,
+    "trades": 2,
+    "wins": 0,
+    "losses": 2,
+    "winRatePct": 0,
+    "totalPnl": -3.60,
+    "maxDrawdownPct": 3.6
+  },
+  "trades": [
+    {
+      "no": 1,
+      "pair": "USDJPY",
+      "side": "buy",
+      "lot": 0.01,
+      "entry": 157.850,
+      "sl": 157.550,
+      "tp": 158.450,
+      "opened": "2026-10-02T09:08+07:00",
+      "closed": "2026-10-02",
+      "result": "SL",
+      "pips": -30,
+      "pnl": -1.90,
+      "balanceAfter": 98.10,
+      "reason": "H4 uptrend, H1 membentuk higher low. Buy limit di area pantulan pagi 157.85.",
+      "lesson": "H4 sebenarnya ambigu: high 158.45 masih di bawah 159. Kalau struktur H4 ambigu, lewati."
+    },
+    {
+      "no": 2,
+      "pair": "AUDUSD",
+      "side": "sell",
+      "lot": 0.01,
+      "entry": 0.69440,
+      "sl": 0.69610,
+      "tp": 0.69100,
+      "opened": "2026-10-05T13:16+07:00",
+      "closed": "2026-10-05",
+      "result": "SL",
+      "pips": -17,
+      "pnl": -1.70,
+      "balanceAfter": 96.40,
+      "reason": "H4 downtrend. Sell di retest support 0.6944 yang jebol.",
+      "lesson": "Setelah candle berita besar (NFP), tunggu konfirmasi struktur sebelum masuk melawannya."
+    }
+  ]
+}
