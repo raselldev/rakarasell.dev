@@ -1,69 +1,111 @@
 {
   "account": {
     "currency": "USD",
-    "startBalance": 100
+    "startBalance": 100.00
+  },
+  "framework": {
+    "current": "v2",
+    "versions": {
+      "v1": "H4 arah, H1 zona, limit order langsung di zona tanpa konfirmasi.",
+      "v2": "H4 arah, H1 zona, cek momentum, tunggu konfirmasi, baru entry. Berlaku mulai trade #4."
+    },
+    "definitions": {
+      "momentumKuat": "Candle H1 yang masuk zona punya rentang lebih dari 2x rata-rata 10 candle H1 sebelumnya.",
+      "konfirmasi": "Setelah harga menyentuh zona, ada candle H1 yang close melewati ujung candle sebelumnya ke arah trade (sell: close di bawah low, buy: close di atas high)."
+    }
   },
   "summary": {
-    "updated": "2026-10-06",
-    "balance": 94.4,
+    "updated": "2026-10-07",
+    "balance": 94.40,
     "trades": 3,
     "wins": 0,
     "losses": 3,
     "winRatePct": 0,
-    "totalPnl": -5.6,
-    "maxDrawdownPct": 5.6
+    "totalPnl": -5.60,
+    "maxDrawdownPct": 5.6,
+    "byVersion": {
+      "v1": { "trades": 3, "wins": 0, "losses": 3, "totalPnl": -5.60 },
+      "v2": { "trades": 0, "wins": 0, "losses": 0, "totalPnl": 0.00 }
+    }
   },
   "trades": [
     {
       "no": 1,
+      "frameworkVersion": "v1",
       "pair": "USDJPY",
-      "side": "buy",
+      "direction": "buy",
       "lot": 0.01,
-      "entry": 157.85,
-      "sl": 157.55,
-      "tp": 158.45,
+      "entry": 157.850,
+      "sl": 157.550,
+      "tp": 158.450,
       "opened": "2026-10-02T09:08+07:00",
       "closed": "2026-10-02",
+      "h4Direction": "Dianggap bullish",
+      "h4Structure": "Ambigu. High terakhir 158.45 masih di bawah 159.0, jadi bisa dibaca sebagai lower high.",
+      "h1Zone": "Support di area pantulan pagi 157.78-157.85.",
+      "h1Momentum": "Normal. Harga turun pelan ke zona saat sesi Asia.",
+      "confirmation": "Tidak ada. Limit order terisi saat harga menyentuh zona.",
+      "newsContext": "NFP dijadwalkan malam harinya. Posisi sudah tertutup sebelum rilis.",
+      "riskPct": 1.9,
+      "rr": 2.0,
       "result": "SL",
       "pips": -30,
-      "pnl": -1.9,
-      "balanceAfter": 98.1,
+      "pnl": -1.90,
+      "balanceAfter": 98.10,
       "reason": "H4 uptrend, H1 membentuk higher low. Buy limit di area pantulan pagi 157.85.",
-      "lesson": "H4 sebenarnya ambigu: high 158.45 masih di bawah 159. Kalau struktur H4 ambigu, lewati."
+      "lesson": "H1 tidak boleh override H4. Kalau struktur H4 belum jelas, skip."
     },
     {
       "no": 2,
+      "frameworkVersion": "v1",
       "pair": "AUDUSD",
-      "side": "sell",
+      "direction": "sell",
       "lot": 0.01,
-      "entry": 0.6944,
-      "sl": 0.6961,
-      "tp": 0.691,
+      "entry": 0.69440,
+      "sl": 0.69610,
+      "tp": 0.69100,
       "opened": "2026-10-05T13:16+07:00",
       "closed": "2026-10-05",
+      "h4Direction": "Bearish",
+      "h4Structure": "Lower high dan lower low utuh (0.6977 di bawah 0.6990), tapi baru ada lonjakan NFP sekitar 70 pips.",
+      "h1Zone": "Retest support 0.6944 yang jebol, diperlakukan sebagai resistance.",
+      "h1Momentum": "Kuat. Beberapa candle H1 hijau beruntun dari 0.6932 menuju zona.",
+      "confirmation": "Tidak ada. Limit order terisi saat harga menyentuh zona.",
+      "newsContext": "Satu hari trading setelah NFP (2 Okt). Struktur pasca-berita belum stabil.",
+      "riskPct": 1.7,
+      "rr": 2.0,
       "result": "SL",
       "pips": -17,
-      "pnl": -1.7,
-      "balanceAfter": 96.4,
+      "pnl": -1.70,
+      "balanceAfter": 96.40,
       "reason": "H4 downtrend. Sell di retest support 0.6944 yang jebol.",
-      "lesson": "Setelah candle berita besar (NFP), tunggu konfirmasi struktur sebelum masuk melawannya."
+      "lesson": "Setelah displacement besar akibat news, tunggu struktur baru sebelum memakai level sebagai dasar entry."
     },
     {
       "no": 3,
+      "frameworkVersion": "v1",
       "pair": "EURUSD",
-      "side": "sell",
+      "direction": "sell",
       "lot": 0.01,
-      "entry": 1.125,
-      "sl": 1.127,
-      "tp": 1.121,
+      "entry": 1.12500,
+      "sl": 1.12700,
+      "tp": 1.12100,
       "opened": "2026-10-06T18:13+07:00",
       "closed": "2026-10-06T18:42+07:00",
+      "h4Direction": "Bearish",
+      "h4Structure": "Jelas. Lower high dan lower low tersusun rapi dari 1.1625 ke 1.1167.",
+      "h1Zone": "Zona konsolidasi 1.1250-1.1265 tempat penurunan sebelumnya dimulai.",
+      "h1Momentum": "Kuat. Satu candle H1 sekitar 40 pips mendorong harga ke zona.",
+      "confirmation": "Tidak ada. Limit order terisi dan kena SL dalam 29 menit.",
+      "newsContext": "Tidak ada berita besar yang diketahui dari chart.",
+      "riskPct": 2.1,
+      "rr": 2.0,
       "result": "SL",
       "pips": -20,
-      "pnl": -2,
-      "balanceAfter": 94.4,
-      "reason": "H4 downtrend paling bersih. Sell limit di zona konsolidasi H1 1.1250-1.1265 tempat penurunan sebelumnya dimulai.",
-      "lesson": "Harga masuk zona dengan satu candle H1 ~40 pips. Dorongan sekuat itu menembus level, sama seperti AUDUSD."
+      "pnl": -2.00,
+      "balanceAfter": 94.40,
+      "reason": "H4 downtrend paling bersih. Sell limit di zona konsolidasi H1 1.1250-1.1265.",
+      "lesson": "Trend benar tidak otomatis berarti timing benar. H4 memberi arah, H1 harus memberi konfirmasi."
     }
   ]
 }
