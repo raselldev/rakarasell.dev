@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Raka Rasell's public forex trading journal — every trade, the reason behind it, and the lesson learned.",
 };
 
-const { account, summary, trades } = journal;
+const { account, framework, summary, trades } = journal;
 
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -34,7 +34,7 @@ function formatPrice(pair: string, value: number) {
   return value.toFixed(pair.endsWith("JPY") ? 3 : 5);
 }
 
-function formatOpened(value: string) {
+function formatTime(value: string) {
   return value.replace("T", " ").replace(/\+07:00$/, " WIB");
 }
 
@@ -57,6 +57,16 @@ const stats = [
   },
   { label: "Max drawdown", value: `${summary.maxDrawdownPct}%` },
 ];
+
+const definitionLabels: Record<string, string> = {
+  momentumKuat: "Strong momentum",
+  konfirmasi: "Confirmation",
+};
+
+const versionStats = summary.byVersion as Record<
+  string,
+  (typeof summary.byVersion)[keyof typeof summary.byVersion]
+>;
 
 export default function TradingJournalPage() {
   const sortedTrades = [...trades].sort((a, b) => b.no - a.no);
@@ -109,6 +119,62 @@ export default function TradingJournalPage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-6 pb-12">
+        <Reveal>
+          <div className="rounded-[2rem] border bg-card p-6 md:p-8">
+            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              Framework
+            </p>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {Object.entries(framework.versions).map(([version, description]) => {
+                const stat = versionStats[version];
+                const isCurrent = version === framework.current;
+                return (
+                  <div
+                    key={version}
+                    className={cn(
+                      "rounded-2xl border p-5",
+                      isCurrent && "border-primary/50"
+                    )}
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p
+                        className={cn(
+                          "font-mono text-sm uppercase",
+                          isCurrent && "text-primary"
+                        )}
+                      >
+                        {version}
+                        {isCurrent && " · current"}
+                      </p>
+                      {stat && (
+                        <p className="font-mono text-xs text-muted-foreground">
+                          {stat.trades} trades · {stat.wins}W · {stat.losses}L ·{" "}
+                          <span className={pnlColor(stat.totalPnl)}>
+                            {signedMoney(stat.totalPnl)}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed">{description}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <dl className="mt-6 grid gap-4 text-sm md:grid-cols-2">
+              {Object.entries(framework.definitions).map(([key, value]) => (
+                <div key={key}>
+                  <dt className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    {definitionLabels[key] ?? key}
+                  </dt>
+                  <dd className="mt-1 leading-relaxed">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
+      </section>
+
       <section className="mx-auto w-full max-w-6xl px-6 pb-24">
         <div className="flex flex-col gap-4">
           {sortedTrades.map((trade) => (
@@ -128,12 +194,15 @@ export default function TradingJournalPage() {
                   <span
                     className={cn(
                       "rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase",
-                      trade.side === "buy"
+                      trade.direction === "buy"
                         ? "border-emerald-600/40 text-emerald-600 dark:text-emerald-400"
                         : "border-red-600/40 text-red-600 dark:text-red-400"
                     )}
                   >
-                    {trade.side}
+                    {trade.direction}
+                  </span>
+                  <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
+                    {trade.frameworkVersion}
                   </span>
                   <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
                     {trade.result}
@@ -153,20 +222,40 @@ export default function TradingJournalPage() {
                   </p>
                 </div>
 
-                <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-3 lg:grid-cols-6">
+                <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-4 lg:grid-cols-8">
                   {[
                     ["Lot", String(trade.lot)],
                     ["Entry", formatPrice(trade.pair, trade.entry)],
                     ["Stop loss", formatPrice(trade.pair, trade.sl)],
                     ["Take profit", formatPrice(trade.pair, trade.tp)],
-                    ["Opened", formatOpened(trade.opened)],
-                    ["Closed", trade.closed],
+                    ["Risk", `${trade.riskPct}%`],
+                    ["R:R", `1:${trade.rr}`],
+                    ["Opened", formatTime(trade.opened)],
+                    ["Closed", formatTime(trade.closed)],
                   ].map(([label, value]) => (
                     <div key={label}>
                       <dt className="text-[10px] uppercase tracking-widest text-muted-foreground">
                         {label}
                       </dt>
                       <dd className="mt-0.5">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm md:grid-cols-2">
+                  {[
+                    ["H4 direction", trade.h4Direction],
+                    ["H4 structure", trade.h4Structure],
+                    ["H1 zone", trade.h1Zone],
+                    ["H1 momentum", trade.h1Momentum],
+                    ["Confirmation", trade.confirmation],
+                    ["News context", trade.newsContext],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                        {label}
+                      </dt>
+                      <dd className="mt-0.5 leading-relaxed">{value}</dd>
                     </div>
                   ))}
                 </dl>
