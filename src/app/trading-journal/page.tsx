@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Raka Rasell's public forex trading journal — every trade, the reason behind it, and the lesson learned.",
 };
 
-const { account, framework, summary, trades } = journal;
+const { account, framework, summary, trades, nonTriggered } = journal;
 
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -68,8 +68,13 @@ const versionStats = summary.byVersion as Record<
   (typeof summary.byVersion)[keyof typeof summary.byVersion]
 >;
 
+const currentVersionTrades = versionStats[framework.current]?.trades ?? 0;
+
 export default function TradingJournalPage() {
   const sortedTrades = [...trades].sort((a, b) => b.no - a.no);
+  const sortedNonTriggered = [...nonTriggered].sort((a, b) =>
+    b.activeFrom.localeCompare(a.activeFrom)
+  );
 
   return (
     <main className="flex min-h-screen w-full flex-col">
@@ -171,11 +176,43 @@ export default function TradingJournalPage() {
                 </div>
               ))}
             </dl>
+            <div className="mt-6 border-t pt-6">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  Evaluation checkpoints
+                </p>
+                <p className="font-mono text-xs text-muted-foreground">
+                  {currentVersionTrades} {framework.current} trades so far
+                </p>
+              </div>
+              <ol className="mt-3 flex flex-wrap gap-2">
+                {framework.evaluationCheckpoints.atV2Trades.map((checkpoint) => {
+                  const reached = currentVersionTrades >= checkpoint;
+                  return (
+                    <li
+                      key={checkpoint}
+                      className={cn(
+                        "rounded-full border px-3 py-1 font-mono text-xs",
+                        reached
+                          ? "border-primary/50 text-primary"
+                          : "text-muted-foreground"
+                      )}
+                    >
+                      {framework.current} #{checkpoint}
+                      {reached && " · reached"}
+                    </li>
+                  );
+                })}
+              </ol>
+              <p className="mt-3 text-sm leading-relaxed">
+                {framework.evaluationCheckpoints.focus}
+              </p>
+            </div>
           </div>
         </Reveal>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24">
+      <section className="mx-auto w-full max-w-6xl px-6 pb-12">
         <div className="flex flex-col gap-4">
           {sortedTrades.map((trade) => (
             <Reveal key={trade.no}>
@@ -279,6 +316,98 @@ export default function TradingJournalPage() {
           ))}
         </div>
       </section>
+
+      {sortedNonTriggered.length > 0 && (
+        <section className="mx-auto w-full max-w-6xl px-6 pb-24">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              Setups that didn&apos;t trigger
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Planned entries where price never reached the zone. No money at
+              risk — logged to check whether the read was right.
+            </p>
+          </Reveal>
+          <div className="mt-6 flex flex-col gap-4">
+            {sortedNonTriggered.map((setup) => (
+              <Reveal key={setup.id}>
+                <article className="relative overflow-hidden rounded-2xl border border-dashed bg-card p-5 md:p-6">
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute right-5 top-4 select-none font-serif text-4xl italic leading-none text-muted md:right-6"
+                  >
+                    {setup.id}
+                  </span>
+
+                  <div className="relative flex flex-wrap items-center gap-2">
+                    <h2 className="text-xl font-semibold tracking-tight md:text-2xl">
+                      {setup.pair}
+                    </h2>
+                    <span
+                      className={cn(
+                        "rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase",
+                        setup.direction === "buy"
+                          ? "border-emerald-600/40 text-emerald-600 dark:text-emerald-400"
+                          : "border-red-600/40 text-red-600 dark:text-red-400"
+                      )}
+                    >
+                      {setup.direction}
+                    </span>
+                    <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
+                      {setup.frameworkVersion}
+                    </span>
+                    <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
+                      Not triggered
+                    </span>
+                    <span
+                      className={cn(
+                        "rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase",
+                        setup.directionCorrect
+                          ? "border-emerald-600/40 text-emerald-600 dark:text-emerald-400"
+                          : "border-red-600/40 text-red-600 dark:text-red-400"
+                      )}
+                    >
+                      {setup.directionCorrect
+                        ? "Direction correct"
+                        : "Direction wrong"}
+                    </span>
+                  </div>
+
+                  <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-3">
+                    {[
+                      ["Zone", setup.zone],
+                      ["Active from", formatTime(setup.activeFrom)],
+                      ["Active until", formatTime(setup.activeUntil)],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <dt className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                          {label}
+                        </dt>
+                        <dd className="mt-0.5">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm md:grid-cols-3">
+                    {[
+                      ["H4", setup.h4],
+                      ["Why it didn't trigger", setup.reasonNotTriggered],
+                      ["Afterwards", setup.afterwards],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                          {label}
+                        </dt>
+                        <dd className="mt-0.5 leading-relaxed">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <Contact />
     </main>

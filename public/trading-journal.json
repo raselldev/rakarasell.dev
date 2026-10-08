@@ -12,10 +12,14 @@
     "definitions": {
       "momentumKuat": "Candle H1 yang masuk zona punya rentang lebih dari 2x rata-rata 10 candle H1 sebelumnya.",
       "konfirmasi": "Setelah harga menyentuh zona, ada candle H1 yang close melewati ujung candle sebelumnya ke arah trade (sell: close di bawah low, buy: close di atas high)."
+    },
+    "evaluationCheckpoints": {
+      "atV2Trades": [10, 20, 30],
+      "focus": "Di trade v2 ke-10 dan ke-20: cek kepatuhan aturan (apakah setiap entry lolos semua tahap v2). Di ke-30: baru menilai win rate dan hasil."
     }
   },
   "summary": {
-    "updated": "2026-10-07",
+    "updated": "2026-10-08",
     "balance": 94.40,
     "trades": 3,
     "wins": 0,
@@ -106,6 +110,21 @@
       "balanceAfter": 94.40,
       "reason": "H4 downtrend paling bersih. Sell limit di zona konsolidasi H1 1.1250-1.1265.",
       "lesson": "Trend benar tidak otomatis berarti timing benar. H4 memberi arah, H1 harus memberi konfirmasi."
+    }
+  ],
+  "nonTriggered": [
+    {
+      "id": "NT-1",
+      "frameworkVersion": "v2",
+      "pair": "EURUSD",
+      "direction": "sell",
+      "activeFrom": "2026-10-07T15:00+07:00",
+      "activeUntil": "2026-10-08T17:00+07:00",
+      "zone": "1.1215-1.1230",
+      "h4": "Bearish. Lower high 1.1277, support 1.1162-1.1165.",
+      "reasonNotTriggered": "Zona tidak tersentuh. High pullback 1.1213 (OANDA), meleset sekitar 2 pips.",
+      "afterwards": "Harga turun ke 1.1182 pada 8 Okt 17:00 WIB, sekitar 31 pips dari high pullback.",
+      "directionCorrect": true
     }
   ]
 }
