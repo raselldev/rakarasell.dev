@@ -1,0 +1,4 @@
+Contact: mailto:security@rakarasell.dev
+Expires: 2027-10-10T00:00:00.000Z
+Preferred-Languages: en, id
+Canonical: https://rakarasell.dev/.well-known/security.txt
