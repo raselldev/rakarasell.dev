@@ -60,6 +60,32 @@ export default function ProjectsPage() {
                 <p className="relative mt-4 leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
+                <div className="relative mt-6 space-y-4 border-t pt-6">
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                      Problem
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed">
+                      {project.problem}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                      Solution
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed">
+                      {project.solution}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                      Result
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed">
+                      {project.result}
+                    </p>
+                  </div>
+                </div>
                 <span className="relative mt-auto inline-flex items-center gap-2 pt-8 font-medium">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
                     <ArrowUpRight className="h-4 w-4" />
