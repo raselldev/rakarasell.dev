@@ -1,50 +1,50 @@
 export const ProjectList = [
   {
-    title: "DapurWangiGroup",
+    title: "DAPURWANGIGROUP",
     description:
-      "An e-commerce platform transformed into a personalized online store, empowering business owners to reach their customers more directly through a seamless and trustworthy shopping experience.",
+      "A e-commerce platform with its own web store and mobile apps, built so the business can sell directly to customers.",
     problem:
-      "The business relied on generic marketplace listings, lacking a direct, branded storefront to build customer trust and repeat purchases.",
+      "The owner wanted to move from Tokopedia to the brand's own online store, but with as small a budget as possible.",
     solution:
-      "Built a dedicated e-commerce platform with a personalized storefront, streamlined checkout, and branded product presentation.",
+      "Built one .NET Core backend shared by a Nuxt web store and Flutter apps for iOS and Android, with BCA Virtual Account and QRIS payments. Kept running costs low by self-hosting on an Indonesia-region VPS instead of managed cloud services.",
     result:
-      "A direct sales channel and a more trustworthy, repeatable shopping experience for customers.",
+      "The business now owns its sales channel on web, iOS, and Android without marketplace fees, running for under $10/month in total.",
     link: "https://dapurwangigroup.com",
   },
   {
-    title: "Honda Smart Device",
+    title: "Migration Honda Smart Device",
     description:
-      "An innovative mobile app designed to boost productivity for Honda dealers while giving customers complete access to Honda car information and simplifying the purchase process across Indonesia.",
+      "Migration of Honda's dealer sales app, used by ~5,000 salespeople across Indonesia for SPK booking, from Xamarin to .NET MAUI.",
     problem:
-      "Honda dealers across Indonesia lacked a unified tool to manage customer interactions, and customers had no single place to access complete vehicle information.",
+      "Xamarin reached end of support, and new Google Play and App Store policies required apps to target newer platform versions. Without a framework migration, the app would be removed from both stores.",
     solution:
-      "Designed and built a mobile app giving dealers productivity tools alongside full customer-facing vehicle information and a simplified purchase flow.",
+      "Migrated the app from Xamarin to .NET MAUI and updated it to meet the latest Android and iOS requirements, while keeping existing features and the SPK booking flow working for active users.",
     result:
-      "Faster, more consistent purchase journeys for customers and improved dealer productivity nationwide.",
-    link: "https://play.google.com/store/apps/details?id=com.hpm.hondasmartdevice&hl=id&gl=US&pli=1",
+      "Passed both store requirements with no takedown, so ~5,000 salespeople across 500+ dealers could keep booking SPK without disruption.",
+    link: "https://play.google.com/store/apps/details?id=com.hpm.hondasmartdevice",
   },
   {
-    title: "Honda Connect",
+    title: "Data Transfer Honda Connect",
     description:
-      "A smart solution that connects drivers to their vehicles in real time. Key features include vehicle data management, service reminders, and essential updates for a more integrated driving experience.",
+      "A data integration that feeds Indonesian dealer vehicle and service records into Honda Connect, the global connected-car app for Honda owners.",
     problem:
-      "Drivers had no real-time way to monitor their vehicle's status or stay on top of service schedules remotely.",
+      "Honda Connect was built globally by the principal, so there was no direct interface between local dealer data and the customer app. Owners couldn't see their own vehicle and service history in it.",
     solution:
-      "Built a connected-car platform handling vehicle data management, automated service reminders, and real-time updates.",
+      "Built a scheduled integration with Spring Boot and cron jobs that pulls vehicle and service data from SQL Server and sends it to Honda Connect on a regular cycle.",
     result:
-      "A more integrated driving experience where drivers stay informed and on top of maintenance without manual tracking.",
+      "Customers can now see their complete vehicle and service data directly in the app.",
     link: "https://www.honda-indonesia.com/hondaconnect",
   },
   {
     title: "Arkamaya Culinary",
     description:
-      "A clean and engaging landing page for Jakarta’s top baking and cooking course, Arkamaya Culinary, built with WordPress to highlight their culinary expertise.",
+      "A landing page for Arkamaya Culinary, a baking and cooking school in Jakarta.",
     problem:
-      "Jakarta's top baking and cooking course had no online presence to showcase its programs or convert interest into enrollments.",
+      "The school had no website to present its programs, so prospective students could only find it through social media or word of mouth.",
     solution:
-      "Designed and built a clean WordPress landing page highlighting their culinary expertise and course offerings.",
+      "Designed and built a WordPress landing page that presents the courses clearly and guides visitors to enroll or get in touch.",
     result:
-      "A polished web presence that reflects the brand's expertise and gives prospective students a clear way to learn more.",
+      "The school's first proper web presence and a clear path from interest to enrollment.",
     link: "https://www.arkamayaculinary.com/",
   },
 ];
