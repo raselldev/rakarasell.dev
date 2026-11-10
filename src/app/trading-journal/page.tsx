@@ -30,11 +30,15 @@ function pnlColor(value: number) {
 }
 
 // JPY pairs quote to 3 decimals, others to 5
-function formatPrice(pair: string, value: number) {
+// "none" = strategy deliberately trades without this level (e.g. fixing: no SL/TP)
+function formatPrice(pair: string, value: number | string | null) {
+  if (value == null) return "—";
+  if (typeof value === "string") return value === "none" ? "None" : value;
   return value.toFixed(pair.endsWith("JPY") ? 3 : 5);
 }
 
-function formatTime(value: string) {
+function formatTime(value: string | null) {
+  if (value == null) return "—";
   return value.replace("T", " ").replace(/\+07:00$/, " WIB");
 }
 
@@ -265,8 +269,8 @@ export default function TradingJournalPage() {
                     ["Entry", formatPrice(trade.pair, trade.entry)],
                     ["Stop loss", formatPrice(trade.pair, trade.sl)],
                     ["Take profit", formatPrice(trade.pair, trade.tp)],
-                    ["Risk", `${trade.riskPct}%`],
-                    ["R:R", `1:${trade.rr}`],
+                    ["Risk", trade.riskPct == null ? "—" : `${trade.riskPct}%`],
+                    ["R:R", trade.rr == null ? "—" : `1:${trade.rr}`],
                     ["Opened", formatTime(trade.opened)],
                     ["Closed", formatTime(trade.closed)],
                   ].map(([label, value]) => (
@@ -292,7 +296,7 @@ export default function TradingJournalPage() {
                       <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                         {label}
                       </dt>
-                      <dd className="mt-0.5 leading-relaxed">{value}</dd>
+                      <dd className="mt-0.5 leading-relaxed">{value ?? "—"}</dd>
                     </div>
                   ))}
                 </dl>
@@ -302,13 +306,13 @@ export default function TradingJournalPage() {
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                       Reason
                     </p>
-                    <p className="mt-1 leading-relaxed">{trade.reason}</p>
+                    <p className="mt-1 leading-relaxed">{trade.reason ?? "—"}</p>
                   </div>
                   <div>
                     <p className="font-mono text-xs uppercase tracking-widest text-primary">
                       Lesson
                     </p>
-                    <p className="mt-1 leading-relaxed">{trade.lesson}</p>
+                    <p className="mt-1 leading-relaxed">{trade.lesson ?? "—"}</p>
                   </div>
                 </div>
               </article>
@@ -398,7 +402,7 @@ export default function TradingJournalPage() {
                         <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                           {label}
                         </dt>
-                        <dd className="mt-0.5 leading-relaxed">{value}</dd>
+                        <dd className="mt-0.5 leading-relaxed">{value ?? "—"}</dd>
                       </div>
                     ))}
                   </dl>
