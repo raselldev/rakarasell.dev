@@ -4,14 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectList } from "@/lib/projectList";
 import { Reveal, Section } from "./home/Section";
-
-function hostOf(url: string) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, "");
-  } catch {
-    return url;
-  }
-}
+import { linkLabel, linkProps } from "@/lib/utils";
 
 export default function Projects() {
   return (
@@ -40,9 +33,7 @@ export default function Projects() {
           <li key={project.title} className="border-b">
             <Reveal delay={index * 0.05}>
               <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...linkProps(project.link)}
                 className="group grid grid-cols-[auto_1fr_auto] items-start gap-x-6 gap-y-2 py-8 transition-colors md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.3fr)_auto] md:items-center md:px-4 md:hover:bg-card"
               >
                 <span className="font-mono text-sm text-muted-foreground">
@@ -53,7 +44,7 @@ export default function Projects() {
                     {project.title}
                   </h3>
                   <p className="mt-1 font-mono text-xs text-muted-foreground">
-                    {hostOf(project.link)}
+                    {linkLabel(project.link)}
                   </p>
                 </div>
                 <p className="col-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-auto md:text-base">

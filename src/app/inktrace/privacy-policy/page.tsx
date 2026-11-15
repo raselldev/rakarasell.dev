@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 // Privacy policy for the INKTRACE Android app. Its URL is entered in the Play Console,
 // so keep the path stable: /inktrace/privacy-policy
@@ -16,11 +18,16 @@ export const metadata: Metadata = {
 export default function InktracePrivacyPolicy() {
   return (
     <main className="mx-auto w-full max-w-3xl px-6 pb-24 pt-32 md:pt-40">
-      <header className="border-b pb-10">
-        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          INKTRACE
-        </p>
-        <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+      <Link
+        href="/inktrace"
+        className="group inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+        INKTRACE
+      </Link>
+
+      <header className="mt-8 border-b pb-10">
+        <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           Privacy Policy
         </h1>
         <p className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">

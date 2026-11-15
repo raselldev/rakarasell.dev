@@ -4,20 +4,13 @@ import { ProjectList } from "@/lib/projectList";
 import Contact from "@/components/home/Contact";
 import PageHeader from "@/components/home/PageHeader";
 import { Reveal } from "@/components/home/Section";
+import { linkLabel, linkProps } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
     "Selected products and platforms Raka Rasell has helped build — from enterprise mobile apps to e-commerce.",
 };
-
-function hostOf(url: string) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, "");
-  } catch {
-    return url;
-  }
-}
 
 export default function ProjectsPage() {
   return (
@@ -40,9 +33,7 @@ export default function ProjectsPage() {
           {ProjectList.map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 0.08} lift>
               <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...linkProps(project.link)}
                 className="group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-[2rem] border bg-card p-8 transition-colors hover:border-foreground md:p-10"
               >
                 <span
@@ -52,7 +43,7 @@ export default function ProjectsPage() {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <p className="relative font-mono text-xs text-muted-foreground">
-                  {hostOf(project.link)}
+                  {linkLabel(project.link)}
                 </p>
                 <h2 className="relative mt-20 text-3xl font-semibold tracking-tight md:text-4xl">
                   {project.title}

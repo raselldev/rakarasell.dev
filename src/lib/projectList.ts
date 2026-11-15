@@ -1,5 +1,17 @@
 export const ProjectList = [
   {
+    title: "INKTRACE",
+    description:
+      "A minimalist Android puzzle game: draw one path through every checkpoint to the flag, using as little ink as possible.",
+    problem:
+      "Path puzzles on a fully visible grid get solved by eye, so levels needed real decisions. The game also had to stay offline, ad-free, and buildable by one person.",
+    solution:
+      "Built a deterministic level generator that runs at build time and sets order traps, an exact checkpoint search that recomputes the optimal cost on the device, and a Flutter app with signed, tamper-checked saves.",
+    result:
+      "In internal testing on Google Play, with 50 generated levels that are each verified to have a perfect route.",
+    link: "/inktrace",
+  },
+  {
     title: "DAPURWANGIGROUP",
     description:
       "A e-commerce platform with its own web store and mobile apps, built so the business can sell directly to customers.",
