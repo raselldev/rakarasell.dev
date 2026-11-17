@@ -4,6 +4,7 @@ import Contact from "@/components/home/Contact";
 import PageHeader from "@/components/home/PageHeader";
 import { Reveal } from "@/components/home/Section";
 import { cn } from "@/lib/utils";
+import BalanceChart from "@/components/trading-journal/BalanceChart";
 
 export const metadata: Metadata = {
   title: "Trading Journal",
@@ -126,6 +127,16 @@ export default function TradingJournalPage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 pb-12">
+        <Reveal>
+          <BalanceChart
+            startBalance={account.startBalance}
+            trades={trades}
+            currency={account.currency}
+          />
+        </Reveal>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6 pb-12">
