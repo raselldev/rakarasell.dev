@@ -20,18 +20,18 @@
     }
   },
   "summary": {
-    "updated": "2026-11-10",
-    "balance": 97.06,
-    "trades": 7,
-    "wins": 2,
+    "updated": "2026-11-20",
+    "balance": 114.00,
+    "trades": 8,
+    "wins": 3,
     "losses": 5,
-    "winRatePct": 28.6,
-    "totalPnl": -2.94,
+    "winRatePct": 37.5,
+    "totalPnl": 14.00,
     "maxDrawdownPct": 11.5,
     "byVersion": {
       "v1": { "trades": 3, "wins": 0, "losses": 3, "totalPnl": -5.60 },
       "v2": { "trades": 2, "wins": 0, "losses": 2, "totalPnl": -5.87 },
-      "fixing": { "trades": 2, "wins": 2, "losses": 0, "totalPnl": 8.53 }
+      "fixing": { "trades": 3, "wins": 3, "losses": 0, "totalPnl": 25.47 }
     }
   },
   "trades": [
@@ -214,6 +214,32 @@
       "pips": 2.6,
       "pnl": 7.07,
       "balanceAfter": 97.06,
+      "reason": "Fade Tokyo fix: sell USDJPY tepat di fixing 09:55 JST (07:55 WIB), mengikuti temuan paper JF 2024 bahwa harga cenderung berbalik di sekitar waktu fixing.",
+      "lesson": null
+    },
+    {
+      "no": 8,
+      "frameworkVersion": "fixing",
+      "pair": "USDJPY",
+      "direction": "sell",
+      "lot": 0.30,
+      "entry": 159.447,
+      "sl": "none",
+      "tp": 159.147,
+      "opened": "2026-11-20T07:54+07:00",
+      "closed": "2026-11-20T08:16+07:00",
+      "h4Direction": null,
+      "h4Structure": null,
+      "h1Zone": null,
+      "h1Momentum": null,
+      "confirmation": null,
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Win",
+      "pips": 9.0,
+      "pnl": 16.94,
+      "balanceAfter": 114.00,
       "reason": "Fade Tokyo fix: sell USDJPY tepat di fixing 09:55 JST (07:55 WIB), mengikuti temuan paper JF 2024 bahwa harga cenderung berbalik di sekitar waktu fixing.",
       "lesson": null
     }
