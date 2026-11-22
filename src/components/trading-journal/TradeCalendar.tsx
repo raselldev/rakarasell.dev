@@ -9,9 +9,9 @@ import { pnlColor, signedMoney, type Trade } from "./format";
 
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-// Timestamps are stored in WIB (+07:00), so the date prefix is already the local day
-const dayKey = (trade: Trade) => trade.opened.slice(0, 10); // "2026-11-20"
-const monthKey = (trade: Trade) => trade.opened.slice(0, 7); // "2026-11"
+// `date` is the WIB local day ("2026-11-20"); times are intentionally not published
+const dayKey = (trade: Trade) => trade.date;
+const monthKey = (trade: Trade) => trade.date.slice(0, 7); // "2026-11"
 
 function parseMonth(key: string) {
   const [year, month] = key.split("-").map(Number);

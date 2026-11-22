@@ -43,3 +43,6 @@ cloudflare-env.d.ts
 *.tsbuildinfo
 next-env.d.ts
 CLAUDE.md
+
+# full trading journal (with entry/exit times + framework) — never commit
+src/data/trading-journal.private.json

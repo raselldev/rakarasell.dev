@@ -5,7 +5,6 @@ type Point = {
   balance: number;
   pnl: number;
   pair?: string;
-  version?: string;
 };
 
 type BalanceChartProps = {
@@ -15,7 +14,6 @@ type BalanceChartProps = {
     balanceAfter: number;
     pnl: number;
     pair: string;
-    frameworkVersion: string;
   }[];
   currency: string;
 };
@@ -54,7 +52,6 @@ export default function BalanceChart({
         balance: t.balanceAfter,
         pnl: t.pnl,
         pair: t.pair,
-        version: t.frameworkVersion,
       })),
   ];
 
@@ -193,7 +190,7 @@ export default function BalanceChart({
                     )}
                   >
                     <p className="text-muted-foreground">
-                      {p.no === 0 ? "Start" : `#${p.no} · ${p.pair} · ${p.version}`}
+                      {p.no === 0 ? "Start" : `#${p.no} · ${p.pair}`}
                     </p>
                     <p className="mt-0.5 text-sm font-semibold">
                       {money.format(p.balance)}
