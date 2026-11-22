@@ -34,6 +34,53 @@
       "fixing": { "trades": 3, "wins": 3, "losses": 0, "totalPnl": 25.47 }
     }
   },
+  "roadmap": {
+    "startedAfterTrade": 8,
+    "startBalance": 114.00,
+    "targetPips": 11.5,
+    "slPips": 12,
+    "pipValuePerLot": 6.27,
+    "maxTradesPerMonth": 5,
+    "goals": [
+      { "profitPerTrade": 500 },
+      { "profitPerTrade": 1000 }
+    ],
+    "phases": [
+      {
+        "key": "compound",
+        "name": "Compound",
+        "account": "Standard · 1:500",
+        "until": 300,
+        "rule": { "type": "factor", "value": 0.0038 },
+        "maxLot": 1,
+        "maxLotPerOrder": 1,
+        "commissionPerLot": 0,
+        "note": "Lot grows with equity (equity × 0.0038, rounded up). Margin level stays around 130%."
+      },
+      {
+        "key": "flat",
+        "name": "Flat 1 lot",
+        "account": "Standard · 1:500",
+        "until": 1000,
+        "rule": { "type": "fixed", "value": 1 },
+        "maxLot": 1,
+        "maxLotPerOrder": 1,
+        "commissionPerLot": 0,
+        "note": "The standard account caps orders at 1 lot, so profit stays flat per trade."
+      },
+      {
+        "key": "scale",
+        "name": "Scale up",
+        "account": "Premium · 1:200",
+        "until": null,
+        "rule": { "type": "divisor", "value": 650 },
+        "maxLot": 30,
+        "maxLotPerOrder": 10,
+        "commissionPerLot": 10,
+        "note": "Upgrade to Premium at $1,000. Lot = equity ÷ 650 (rounded down), keeping margin level around 133%. Above 10 lot, split into multiple orders."
+      }
+    ]
+  },
   "trades": [
     {
       "no": 1,

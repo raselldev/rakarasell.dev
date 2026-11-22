@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import journal from "../../../public/trading-journal.json";
 import Contact from "@/components/home/Contact";
 import PageHeader from "@/components/home/PageHeader";
@@ -73,7 +74,14 @@ export default function TradingJournalPage() {
         description={`A live forex account that started at ${money.format(
           account.startBalance
         )}. Every trade is logged here — wins, losses, the reason I entered, and what I learned.`}
-      />
+      >
+        <Link
+          href="/trading-journal/roadmap"
+          className="mt-8 inline-flex rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          See the roadmap →
+        </Link>
+      </PageHeader>
 
       <section className="mx-auto w-full max-w-6xl px-6 pb-12">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
