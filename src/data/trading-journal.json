@@ -1,0 +1,226 @@
+{
+  "account": {
+    "currency": "USD",
+    "startBalance": 100.0
+  },
+  "summary": {
+    "updated": "2026-11-20",
+    "balance": 114.0,
+    "trades": 8,
+    "wins": 3,
+    "losses": 5,
+    "winRatePct": 37.5,
+    "totalPnl": 14.0,
+    "maxDrawdownPct": 11.5
+  },
+  "roadmap": {
+    "startedAfterTrade": 8,
+    "startBalance": 114.0,
+    "targetPips": 11.5,
+    "slPips": 12,
+    "pipValuePerLot": 6.27,
+    "maxTradesPerMonth": 5,
+    "goals": [
+      {
+        "profitPerTrade": 500
+      },
+      {
+        "profitPerTrade": 1000
+      }
+    ],
+    "phases": [
+      {
+        "key": "compound",
+        "name": "Compound",
+        "account": "Standard · 1:500",
+        "until": 300,
+        "rule": {
+          "type": "factor",
+          "value": 0.0038
+        },
+        "maxLot": 1,
+        "maxLotPerOrder": 1,
+        "commissionPerLot": 0,
+        "note": "Lot grows with equity (equity × 0.0038, rounded up). Margin level stays around 130%."
+      },
+      {
+        "key": "flat",
+        "name": "Flat 1 lot",
+        "account": "Standard · 1:500",
+        "until": 1000,
+        "rule": {
+          "type": "fixed",
+          "value": 1
+        },
+        "maxLot": 1,
+        "maxLotPerOrder": 1,
+        "commissionPerLot": 0,
+        "note": "The standard account caps orders at 1 lot, so profit stays flat per trade."
+      },
+      {
+        "key": "scale",
+        "name": "Scale up",
+        "account": "Premium · 1:200",
+        "until": null,
+        "rule": {
+          "type": "divisor",
+          "value": 650
+        },
+        "maxLot": 30,
+        "maxLotPerOrder": 10,
+        "commissionPerLot": 10,
+        "note": "Upgrade to Premium at $1,000. Lot = equity ÷ 650 (rounded down), keeping margin level around 133%. Above 10 lot, split into multiple orders."
+      }
+    ]
+  },
+  "trades": [
+    {
+      "no": 1,
+      "pair": "USDJPY",
+      "direction": "buy",
+      "lot": 0.01,
+      "entry": 157.85,
+      "sl": 157.55,
+      "tp": 158.45,
+      "date": "2026-10-02",
+      "newsContext": "NFP dijadwalkan malam harinya. Posisi sudah tertutup sebelum rilis.",
+      "riskPct": 1.9,
+      "rr": 2.0,
+      "result": "SL",
+      "pips": -30,
+      "pnl": -1.9,
+      "balanceAfter": 98.1
+    },
+    {
+      "no": 2,
+      "pair": "AUDUSD",
+      "direction": "sell",
+      "lot": 0.01,
+      "entry": 0.6944,
+      "sl": 0.6961,
+      "tp": 0.691,
+      "date": "2026-10-05",
+      "newsContext": "Satu hari trading setelah NFP (2 Okt). Struktur pasca-berita belum stabil.",
+      "riskPct": 1.7,
+      "rr": 2.0,
+      "result": "SL",
+      "pips": -17,
+      "pnl": -1.7,
+      "balanceAfter": 96.4
+    },
+    {
+      "no": 3,
+      "pair": "EURUSD",
+      "direction": "sell",
+      "lot": 0.01,
+      "entry": 1.125,
+      "sl": 1.127,
+      "tp": 1.121,
+      "date": "2026-10-06",
+      "newsContext": "Tidak ada berita besar yang diketahui dari chart.",
+      "riskPct": 2.1,
+      "rr": 2.0,
+      "result": "SL",
+      "pips": -20,
+      "pnl": -2.0,
+      "balanceAfter": 94.4
+    },
+    {
+      "no": 4,
+      "pair": "EURUSD",
+      "direction": "sell",
+      "lot": 0.01,
+      "entry": 1.11725,
+      "sl": null,
+      "tp": null,
+      "date": "2026-10-13",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Loss",
+      "pips": -7.5,
+      "pnl": -0.75,
+      "balanceAfter": 93.65
+    },
+    {
+      "no": 5,
+      "pair": "EURJPY",
+      "direction": "buy",
+      "lot": 0.01,
+      "entry": 176.169,
+      "sl": null,
+      "tp": null,
+      "date": "2026-10-23",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Loss",
+      "pips": -80.2,
+      "pnl": -5.12,
+      "balanceAfter": 88.53
+    },
+    {
+      "no": 6,
+      "pair": "USDJPY",
+      "direction": "sell",
+      "lot": 0.02,
+      "entry": 157.352,
+      "sl": "none",
+      "tp": "none",
+      "date": "2026-10-30",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Win",
+      "pips": 11.5,
+      "pnl": 1.46,
+      "balanceAfter": 89.99
+    },
+    {
+      "no": 7,
+      "pair": "USDJPY",
+      "direction": "sell",
+      "lot": 0.43,
+      "entry": 158.068,
+      "sl": "none",
+      "tp": "none",
+      "date": "2026-11-10",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Win",
+      "pips": 2.6,
+      "pnl": 7.07,
+      "balanceAfter": 97.06
+    },
+    {
+      "no": 8,
+      "pair": "USDJPY",
+      "direction": "sell",
+      "lot": 0.3,
+      "entry": 159.447,
+      "sl": "none",
+      "tp": 159.147,
+      "date": "2026-11-20",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Win",
+      "pips": 9.0,
+      "pnl": 16.94,
+      "balanceAfter": 114.0
+    }
+  ],
+  "nonTriggered": [
+    {
+      "id": "NT-1",
+      "pair": "EURUSD",
+      "direction": "sell",
+      "date": "2026-10-07",
+      "zone": "1.1215-1.1230",
+      "reasonNotTriggered": "Zona tidak tersentuh. High pullback 1.1213, meleset sekitar 2 pips.",
+      "afterwards": "Harga turun ke 1.1182, sekitar 31 pips dari high pullback.",
+      "directionCorrect": true
+    }
+  ]
+}

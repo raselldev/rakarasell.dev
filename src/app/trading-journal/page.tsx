@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import journal from "../../../public/trading-journal.json";
+import journal from "@/data/trading-journal.json";
 import Contact from "@/components/home/Contact";
 import PageHeader from "@/components/home/PageHeader";
 import { Reveal } from "@/components/home/Section";
@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 import BalanceChart from "@/components/trading-journal/BalanceChart";
 import TradeCalendar from "@/components/trading-journal/TradeCalendar";
 import {
-  formatTime,
   money,
   pnlColor,
   signedMoney,
@@ -17,10 +16,10 @@ import {
 export const metadata: Metadata = {
   title: "Trading Journal",
   description:
-    "Raka Rasell's public forex trading journal — every trade, the reason behind it, and the lesson learned.",
+    "Raka Rasell's public forex trading journal — every trade, its setup, and the result.",
 };
 
-const { account, framework, summary, trades, nonTriggered } = journal;
+const { account, summary, trades, nonTriggered } = journal;
 
 const stats = [
   {
@@ -42,21 +41,9 @@ const stats = [
   { label: "Max drawdown", value: `${summary.maxDrawdownPct}%` },
 ];
 
-const definitionLabels: Record<string, string> = {
-  momentumKuat: "Strong momentum",
-  konfirmasi: "Confirmation",
-};
-
-const versionStats = summary.byVersion as Record<
-  string,
-  (typeof summary.byVersion)[keyof typeof summary.byVersion]
->;
-
-const currentVersionTrades = versionStats[framework.current]?.trades ?? 0;
-
 export default function TradingJournalPage() {
   const sortedNonTriggered = [...nonTriggered].sort((a, b) =>
-    b.activeFrom.localeCompare(a.activeFrom)
+    b.date.localeCompare(a.date)
   );
 
   return (
@@ -73,7 +60,7 @@ export default function TradingJournalPage() {
         }
         description={`A live forex account that started at ${money.format(
           account.startBalance
-        )}. Every trade is logged here — wins, losses, the reason I entered, and what I learned.`}
+        )}. Every trade is logged here — wins, losses, and the setup behind each one.`}
       >
         <Link
           href="/trading-journal/roadmap"
@@ -124,94 +111,6 @@ export default function TradingJournalPage() {
         </Reveal>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-12">
-        <Reveal>
-          <div className="rounded-[2rem] border bg-card p-6 md:p-8">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              Framework
-            </p>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {Object.entries(framework.versions).map(([version, description]) => {
-                const stat = versionStats[version];
-                const isCurrent = version === framework.current;
-                return (
-                  <div
-                    key={version}
-                    className={cn(
-                      "rounded-2xl border p-5",
-                      isCurrent && "border-primary/50"
-                    )}
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p
-                        className={cn(
-                          "font-mono text-sm uppercase",
-                          isCurrent && "text-primary"
-                        )}
-                      >
-                        {version}
-                        {isCurrent && " · current"}
-                      </p>
-                      {stat && (
-                        <p className="font-mono text-xs text-muted-foreground">
-                          {stat.trades} trades · {stat.wins}W · {stat.losses}L ·{" "}
-                          <span className={pnlColor(stat.totalPnl)}>
-                            {signedMoney(stat.totalPnl)}
-                          </span>
-                        </p>
-                      )}
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed">{description}</p>
-                  </div>
-                );
-              })}
-            </div>
-            <dl className="mt-6 grid gap-4 text-sm md:grid-cols-2">
-              {Object.entries(framework.definitions).map(([key, value]) => (
-                <div key={key}>
-                  <dt className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                    {definitionLabels[key] ?? key}
-                  </dt>
-                  <dd className="mt-1 leading-relaxed">{value}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="mt-6 border-t pt-6">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  Evaluation checkpoints
-                </p>
-                <p className="font-mono text-xs text-muted-foreground">
-                  {currentVersionTrades} {framework.current} trades so far
-                </p>
-              </div>
-              <ol className="mt-3 flex flex-wrap gap-2">
-                {framework.evaluationCheckpoints.atV2Trades.map((checkpoint) => {
-                  const reached = currentVersionTrades >= checkpoint;
-                  return (
-                    <li
-                      key={checkpoint}
-                      className={cn(
-                        "rounded-full border px-3 py-1 font-mono text-xs",
-                        reached
-                          ? "border-primary/50 text-primary"
-                          : "text-muted-foreground"
-                      )}
-                    >
-                      {framework.current} #{checkpoint}
-                      {reached && " · reached"}
-                    </li>
-                  );
-                })}
-              </ol>
-              <p className="mt-3 text-sm leading-relaxed">
-                {framework.evaluationCheckpoints.focus}
-              </p>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
       <TradeCalendar trades={trades} />
 
       {sortedNonTriggered.length > 0 && (
@@ -251,9 +150,6 @@ export default function TradingJournalPage() {
                       {setup.direction}
                     </span>
                     <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
-                      {setup.frameworkVersion}
-                    </span>
-                    <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
                       Not triggered
                     </span>
                     <span
@@ -270,11 +166,10 @@ export default function TradingJournalPage() {
                     </span>
                   </div>
 
-                  <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-3">
+                  <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-2">
                     {[
                       ["Zone", setup.zone],
-                      ["Active from", formatTime(setup.activeFrom)],
-                      ["Active until", formatTime(setup.activeUntil)],
+                      ["Date", setup.date],
                     ].map(([label, value]) => (
                       <div key={label}>
                         <dt className="text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -285,9 +180,8 @@ export default function TradingJournalPage() {
                     ))}
                   </dl>
 
-                  <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm md:grid-cols-3">
+                  <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm md:grid-cols-2">
                     {[
-                      ["H4", setup.h4],
                       ["Why it didn't trigger", setup.reasonNotTriggered],
                       ["Afterwards", setup.afterwards],
                     ].map(([label, value]) => (

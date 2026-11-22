@@ -1,4 +1,4 @@
-import journal from "../../../public/trading-journal.json";
+import journal from "@/data/trading-journal.json";
 
 export type Trade = (typeof journal.trades)[number];
 
@@ -19,14 +19,9 @@ export function pnlColor(value: number) {
 }
 
 // JPY pairs quote to 3 decimals, others to 5
-// "none" = strategy deliberately trades without this level (e.g. fixing: no SL/TP)
+// "none" = strategy deliberately trades without this level (e.g. no SL/TP)
 export function formatPrice(pair: string, value: number | string | null) {
   if (value == null) return "—";
   if (typeof value === "string") return value === "none" ? "None" : value;
   return value.toFixed(pair.endsWith("JPY") ? 3 : 5);
-}
-
-export function formatTime(value: string | null) {
-  if (value == null) return "—";
-  return value.replace("T", " ").replace(/\+07:00$/, " WIB");
 }

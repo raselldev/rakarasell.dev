@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import journal from "../../../../public/trading-journal.json";
+import journal from "@/data/trading-journal.json";
 import Contact from "@/components/home/Contact";
 import PageHeader from "@/components/home/PageHeader";
 import { Reveal } from "@/components/home/Section";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: "Trading Roadmap",
   description: `Raka Rasell's plan to grow a small forex account to ${usd(
     finalGoal(roadmap)
-  )} profit per trade with the Tokyo fixing strategy.`,
+  )} profit per trade.`,
 };
 
 const plan = plannedPath(roadmap);
@@ -78,7 +78,7 @@ export default function TradingRoadmapPage() {
         }
         description={`The plan for growing this account from ${usd(
           roadmap.startBalance
-        )} with the Tokyo fixing strategy, phase by phase, and how the real trades compare to it.`}
+        )}, phase by phase, and how the real trades compare to it.`}
       >
         <Link
           href="/trading-journal"
@@ -383,8 +383,7 @@ export default function TradingRoadmapPage() {
                 charged per side, the plan needs a few more trades.
               </li>
               <li>
-                At most {roadmap.maxTradesPerMonth} trades a month. A late entry, even
-                by a minute, means no trade that day.
+                At most {roadmap.maxTradesPerMonth} trades a month.
               </li>
             </ul>
           </div>

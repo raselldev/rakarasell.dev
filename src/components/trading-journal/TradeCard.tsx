@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import {
   formatPrice,
-  formatTime,
   money,
   pnlColor,
   signedMoney,
@@ -33,9 +32,6 @@ export default function TradeCard({ trade }: { trade: Trade }) {
           {trade.direction}
         </span>
         <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
-          {trade.frameworkVersion}
-        </span>
-        <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[11px] uppercase text-muted-foreground">
           {trade.result}
         </span>
       </div>
@@ -53,7 +49,7 @@ export default function TradeCard({ trade }: { trade: Trade }) {
         </p>
       </div>
 
-      <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-4 lg:grid-cols-8">
+      <dl className="relative mt-5 grid grid-cols-2 gap-3 font-mono text-xs sm:grid-cols-4 lg:grid-cols-7">
         {[
           ["Lot", String(trade.lot)],
           ["Entry", formatPrice(trade.pair, trade.entry)],
@@ -61,8 +57,7 @@ export default function TradeCard({ trade }: { trade: Trade }) {
           ["Take profit", formatPrice(trade.pair, trade.tp)],
           ["Risk", trade.riskPct == null ? "—" : `${trade.riskPct}%`],
           ["R:R", trade.rr == null ? "—" : `1:${trade.rr}`],
-          ["Opened", formatTime(trade.opened)],
-          ["Closed", formatTime(trade.closed)],
+          ["Date", trade.date],
         ].map(([label, value]) => (
           <div key={label}>
             <dt className="text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -73,13 +68,8 @@ export default function TradeCard({ trade }: { trade: Trade }) {
         ))}
       </dl>
 
-      <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm md:grid-cols-2">
+      <dl className="relative mt-5 grid gap-x-6 gap-y-3 border-t pt-5 text-sm">
         {[
-          ["H4 direction", trade.h4Direction],
-          ["H4 structure", trade.h4Structure],
-          ["H1 zone", trade.h1Zone],
-          ["H1 momentum", trade.h1Momentum],
-          ["Confirmation", trade.confirmation],
           ["News context", trade.newsContext],
         ].map(([label, value]) => (
           <div key={label}>
@@ -91,20 +81,6 @@ export default function TradeCard({ trade }: { trade: Trade }) {
         ))}
       </dl>
 
-      <div className="relative mt-5 grid gap-4 text-sm md:grid-cols-2">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Reason
-          </p>
-          <p className="mt-1 leading-relaxed">{trade.reason ?? "—"}</p>
-        </div>
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-primary">
-            Lesson
-          </p>
-          <p className="mt-1 leading-relaxed">{trade.lesson ?? "—"}</p>
-        </div>
-      </div>
     </article>
   );
 }

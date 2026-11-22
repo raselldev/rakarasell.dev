@@ -1,4 +1,4 @@
-import journal from "../../../public/trading-journal.json";
+import journal from "@/data/trading-journal.json";
 
 export type Roadmap = typeof journal.roadmap;
 export type Phase = Roadmap["phases"][number];
