@@ -4,13 +4,13 @@
     "startBalance": 100.0
   },
   "summary": {
-    "updated": "2026-11-20",
-    "balance": 114.0,
-    "trades": 8,
-    "wins": 3,
+    "updated": "2026-11-25",
+    "balance": 118.14,
+    "trades": 9,
+    "wins": 4,
     "losses": 5,
-    "winRatePct": 37.5,
-    "totalPnl": 14.0,
+    "winRatePct": 44.4,
+    "totalPnl": 18.14,
     "maxDrawdownPct": 11.5
   },
   "roadmap": {
@@ -209,6 +209,23 @@
       "pips": 9.0,
       "pnl": 16.94,
       "balanceAfter": 114.0
+    },
+    {
+      "no": 9,
+      "pair": "USDJPY",
+      "direction": "sell",
+      "lot": 0.44,
+      "entry": 159.329,
+      "sl": "none",
+      "tp": "none",
+      "date": "2026-11-25",
+      "newsContext": null,
+      "riskPct": null,
+      "rr": null,
+      "result": "Win",
+      "pips": 1.5,
+      "pnl": 4.14,
+      "balanceAfter": 118.14
     }
   ],
   "nonTriggered": [
